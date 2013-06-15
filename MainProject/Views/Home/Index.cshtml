@@ -1,0 +1,78 @@
+﻿@model  MainProject.Models.User
+
+<div id="body">
+    <aside style="float: left; width: 10px; margin-left: 50px">
+        <div class="rotate" style="width: 350px; margin-top: 150px">
+            <label style="font-family: 'Agency FB'; font-size: 50px; color: #232020">MWMS WEB SERVICE</label>
+        </div>
+    </aside>
+
+    <div style="margin-left: 300px">
+        <h3>REGISTER:</h3>
+        @using (Html.BeginForm("Add", "Home", FormMethod.Post))
+        {   
+            <div style="float: left">
+                <div>
+                    @Html.LabelFor(model => model.UserName)
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.UserName)
+                </div>
+            </div>
+            
+            <div style="border-left: 30px">
+                <div>
+                    @Html.LabelFor(model => model.Password)
+                </div>
+                <div>
+                    @Html.PasswordFor(model => model.Password)
+                </div>
+            </div>
+          
+
+            <div>
+                @Html.LabelFor(model => model.ClientId)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.ClientId)
+            </div>
+           
+            <p>
+                <input type="submit" value="REGISTER" />
+            </p>
+        }
+        <br />
+        <div>
+            <h3>CHECK USER:</h3>
+            @using (Html.BeginForm("Find", "Home", FormMethod.Post))
+            {   
+                <div style="clear: both; float: left">
+                    <div>
+                        @Html.LabelFor(model => model.UserName)
+                    </div>
+                    <div>
+                        @Html.EditorFor(model => model.UserName)
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        @Html.LabelFor(model => model.Password)
+                    </div>
+                    <div>
+                        @Html.PasswordFor(model => model.Password)
+                    </div>
+                </div>
+             
+              
+                <p>
+                    <input type="submit" value="CHECK" />
+                </p>
+            }
+            <div>
+                CLIENT ID:
+            <label id="clientId">USER DOES NOT EXIST</label>
+            </div>
+
+        </div>
+    </div>
+</div>
