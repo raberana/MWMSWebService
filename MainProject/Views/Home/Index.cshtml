@@ -11,7 +11,7 @@
         <h3>REGISTER:</h3>
         @using (Html.BeginForm("Add", "Home", FormMethod.Post))
         {   
-            <div style="float: left">
+            <div>
                 <div>
                     @Html.LabelFor(model => model.UserName)
                 </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             
-            <div style="border-left: 30px">
+            <div>
                 <div>
                     @Html.LabelFor(model => model.Password)
                 </div>
@@ -41,12 +41,12 @@
                 <input type="submit" value="REGISTER" />
             </p>
         }
-        <br />
-        <div>
+
+        <div style="clear: both">
             <h3>CHECK USER:</h3>
             @using (Html.BeginForm("Find", "Home", FormMethod.Post))
             {   
-                <div style="clear: both; float: left">
+                <div>
                     <div>
                         @Html.LabelFor(model => model.UserName)
                     </div>
