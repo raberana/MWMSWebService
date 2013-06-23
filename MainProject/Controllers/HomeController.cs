@@ -14,25 +14,25 @@ namespace MainProject.Controllers
             return View();
         }
 
-        public RedirectToRouteResult Add(User user)
+        public RedirectToRouteResult Add(UserModel user)
         {
             
             return RedirectToAction("Index", "Home");
         }
-        public JsonResult Find(User user)
+        public JsonResult Find(UserModel user)
         {
             JsonResult jsonData = new JsonResult();
 
             return Json(jsonData, JsonRequestBehavior.AllowGet);
         }
 
-        public RedirectToRouteResult Delete(User user)
+        public RedirectToRouteResult Delete(UserModel user)
         {
 
             return RedirectToAction("Index", "Home");
         }
 
-        public RedirectToRouteResult Edit(User user)
+        public RedirectToRouteResult Edit(UserModel user)
         {
 
             return RedirectToAction("Index", "Home");

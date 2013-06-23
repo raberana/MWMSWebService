@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainProject", "MainProject\MainProject.csproj", "{A8A4B4EE-54EB-4695-8998-32A8D4C255EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectRepository", "Repository\ProjectRepository.csproj", "{563BC718-A238-48B4-B092-7537C05E35AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MwmsBusiness", "MwmsBusiness\MwmsBusiness.csproj", "{1B1C6DC6-1AA8-4BC9-9641-18693A94546E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{A8A4B4EE-54EB-4695-8998-32A8D4C255EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A4B4EE-54EB-4695-8998-32A8D4C255EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8A4B4EE-54EB-4695-8998-32A8D4C255EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563BC718-A238-48B4-B092-7537C05E35AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563BC718-A238-48B4-B092-7537C05E35AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563BC718-A238-48B4-B092-7537C05E35AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563BC718-A238-48B4-B092-7537C05E35AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B1C6DC6-1AA8-4BC9-9641-18693A94546E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B1C6DC6-1AA8-4BC9-9641-18693A94546E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B1C6DC6-1AA8-4BC9-9641-18693A94546E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B1C6DC6-1AA8-4BC9-9641-18693A94546E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
