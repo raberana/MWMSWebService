@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace ProjectRepository
 {
-    public class NHibernateRepository<T> : IRepository<T> where T : class
+
+    public class NHibernateRepository<TEntity, TKey> where TEntity : class
     {
+        ISession _session;
         protected Configuration config;
         protected ISessionFactory sessionFactory;
 
@@ -23,56 +25,41 @@ namespace ProjectRepository
                     MsSqlConfiguration
                     .MsSql2008
                     .ConnectionString(@"Data Source=SQLEXPRESS;Initial Catalog=TestDB;Integrated Security=True"))
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateRepository<T>>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateRepository<TEntity, TKey>>())
                 .BuildConfiguration();
 
             sessionFactory = config.BuildSessionFactory();
+            if (_session == null)
+                _session = sessionFactory.OpenSession();
         }
 
-        public void Save(T value)
+
+        public NHibernateRepository(ISession session)
         {
-            using (var session = sessionFactory.OpenSession())
-            using (var transaction = session.BeginTransaction())
-            {
-                session.Save(value);
-                transaction.Commit();
-            }
+            _session = session;
         }
 
-        //Find one only
-        //public T Find(string propertyName1, string propertyName2, string value1, string value2)
-        //{
-        //    using (var session = sessionFactory.OpenSession())
-        //    using (var transaction = session.BeginTransaction())
-        //    {
-        //        return session.CreateCriteria(typeof(T)).Add(Expression.Eq(propertyName1, value1))
-        //                                 .Add(Expression.Eq(propertyName2, value2)).List()[0];
-        //    }
-        //}
+        protected ISession Session { get { return _session; } }
 
-        public T Get(object id)
+        public TEntity GetById(string id)
         {
-            using (var session = sessionFactory.OpenSession())
-            using (var transaction = session.BeginTransaction())
-            {
-                var res = session.Get<T>(id);
-                return res;
-            }
+            return _session.Get<TEntity>(id);
         }
 
-        public void Update(T value)
+        public void Create(TEntity entity)
         {
-            throw new NotImplementedException();
+            _session.SaveOrUpdate(entity);
         }
 
-        public void Delete(T value)
+        public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _session.SaveOrUpdate(entity);
+
         }
 
-        public IList<T> GetAll()
+        public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            _session.Delete(entity);
         }
     }
 }

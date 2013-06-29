@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace ProjectRepository
 {
-    public interface IRepository<T>
+    public interface IRepository<TEntity, in TKey> where TEntity : class
     {
-        T Get(object id);
-        void Save(T value);
-        void Update(T value);
-        void Delete(T value);
-        IList<T> GetAll();
+        TEntity GetById(TKey id);
+        void Create(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
     }
 }
