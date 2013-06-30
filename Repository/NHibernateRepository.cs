@@ -1,5 +1,7 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using MwmsBusiness;
+using MwmsBusiness.Mapping;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Criterion;
@@ -21,12 +23,12 @@ namespace ProjectRepository
         public NHibernateRepository()
         {
             config = Fluently.Configure()
-                .Database(
-                    MsSqlConfiguration
-                    .MsSql2008
-                    .ConnectionString(@"Data Source=SQLEXPRESS;Initial Catalog=TestDB;Integrated Security=True"))
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NHibernateRepository<TEntity, TKey>>())
-                .BuildConfiguration();
+                      .Database(
+                          MsSqlConfiguration
+                          .MsSql2008
+                          .ConnectionString(@"Data Source=localhost;Initial Catalog=mwms;Integrated Security=True;User ID=sa;Password=sql"))
+                          .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TEntity>())
+                      .BuildConfiguration();
 
             sessionFactory = config.BuildSessionFactory();
             if (_session == null)
@@ -39,7 +41,13 @@ namespace ProjectRepository
             _session = session;
         }
 
-        protected ISession Session { get { return _session; } }
+        protected ISession Session
+        {
+            get
+            {
+                return _session;
+            }
+        }
 
         public TEntity GetById(string id)
         {
@@ -48,18 +56,25 @@ namespace ProjectRepository
 
         public void Create(TEntity entity)
         {
-            _session.SaveOrUpdate(entity);
+            NHibernateUnitOfWork unitOfWork = new NHibernateUnitOfWork(_session);
+            unitOfWork.Session.SaveOrUpdate(entity);
+            unitOfWork.SaveChanges();
         }
 
         public void Update(TEntity entity)
         {
-            _session.SaveOrUpdate(entity);
-
+            NHibernateUnitOfWork unitOfWork = new NHibernateUnitOfWork(_session);
+            unitOfWork.Session.SaveOrUpdate(entity);
+            unitOfWork.SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
-            _session.Delete(entity);
+            NHibernateUnitOfWork unitOfWork = new NHibernateUnitOfWork(_session);
+            unitOfWork.Session.Delete(entity);
+            unitOfWork.SaveChanges();
         }
+
+
     }
 }

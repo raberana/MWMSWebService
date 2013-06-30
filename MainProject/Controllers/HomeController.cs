@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MwmsBusiness;
+using ProjectRepository;
 
 namespace MainProject.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -16,7 +19,8 @@ namespace MainProject.Controllers
 
         public RedirectToRouteResult Add(UserModel user)
         {
-            
+            UserManager manager = new UserManager();
+            manager.AddUser(user.UserName, user.Password, user.ClientId);
             return RedirectToAction("Index", "Home");
         }
         public JsonResult Find(UserModel user)

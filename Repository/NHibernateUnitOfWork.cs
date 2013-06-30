@@ -12,9 +12,12 @@ namespace ProjectRepository
         private readonly ISession _session;
         private ITransaction _transaction;
 
+        public ISession Session { get { return _session; } }
+
         public NHibernateUnitOfWork(ISession session)
         {
-            _session = session;
+            if (_session == null)
+                _session = session;
             _transaction = _session.BeginTransaction();
         }
 

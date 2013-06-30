@@ -11,7 +11,8 @@ namespace MwmsBusiness.Mapping
     {
         public UserMap()
         {
-            Id(x => x.Id);
+            Table("User");
+            Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.UserName);
             Map(x => x.Password);
             Map(x => x.ClientId);

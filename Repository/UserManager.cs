@@ -11,33 +11,40 @@ namespace ProjectRepository
     public class UserManager : NHibernateRepository<User, string>, IUserRepository
     {
         ISession _session;
-
-        public UserManager(ISession session)
-            : base(session)
+        public UserManager()
+            : base()
         {
-            _session = session;
         }
 
-        public IList<User> FindByUserName(string username)
+        public IList<User> FindUserByUserName(string username)
         {
-            return _session.QueryOver<User>().Where(x => x.UserName == username).List();
+            return Session.QueryOver<User>().Where(x => x.UserName == username).List();
         }
 
-        public IList<User> FindByClientId(string clientId)
+        public IList<User> FindUserByClientId(string clientId)
         {
-            return _session.QueryOver<User>().Where(x => x.ClientId == clientId).List();
+            return Session.QueryOver<User>().Where(x => x.ClientId == clientId).List();
         }
 
         public void DeleteUser(User user)
         {
-            _session.Delete(user);
-            ExecuteUnitOfWork(_session);
+            Delete(user);
         }
 
         public void SaveOrUpdateUser(User user)
         {
-            _session.SaveOrUpdate(user);
-            ExecuteUnitOfWork(_session);
+            Update(user);
+        }
+
+        public void AddUser(string userName, string password, string clientId)
+        {
+            User user = new User()
+            {
+                UserName = userName,
+                Password = password,
+                ClientId = clientId
+            };
+            Create(user);
         }
 
         public IEnumerable<User> FindUsers()
@@ -50,10 +57,10 @@ namespace ProjectRepository
             throw new NotImplementedException();
         }
 
-        private void ExecuteUnitOfWork(ISession session)
+        public User ValidateUser(string userName, string password)
         {
-            NHibernateUnitOfWork unitOfWork = new NHibernateUnitOfWork(session);
-            unitOfWork.SaveChanges();
+            var user = Session.QueryOver<User>().Where(x => x.UserName == userName.Trim() && x.Password == password.Trim()).SingleOrDefault();
+            return user;
         }
 
     }
