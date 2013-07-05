@@ -9,37 +9,44 @@ using ProjectRepository;
 
 namespace MainProject.Controllers
 {
-    public class HomeController : Controller
-    {
+	public class HomeController : Controller
+	{
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public ActionResult Index()
+		{
+			return View();
+		}
 
-        public RedirectToRouteResult Add(UserModel user)
-        {
-            UserManager manager = new UserManager();
-            manager.AddUser(user.UserName, user.Password, user.ClientId);
-            return RedirectToAction("Index", "Home");
-        }
-        public JsonResult Find(UserModel user)
-        {
-            JsonResult jsonData = new JsonResult();
+		public RedirectToRouteResult Add(UserModel user)
+		{
+			UserManager manager = new UserManager();
+			manager.AddUser(user.UserName, user.Password, user.ClientId);
+			return RedirectToAction("Index", "Home");
+		}
 
-            return Json(jsonData, JsonRequestBehavior.AllowGet);
-        }
+		public JsonResult Find(string userName, string password)
+		{
+			UserManager manager = new UserManager();
+			User user = manager.ValidateUser(userName, password);
+			List<User> userLists = new List<User>();
+			if (user != null)
+			{
+				userLists.Add(user);
+			}
 
-        public RedirectToRouteResult Delete(UserModel user)
-        {
+			return Json(userLists, JsonRequestBehavior.AllowGet);
+		}
 
-            return RedirectToAction("Index", "Home");
-        }
+		public RedirectToRouteResult Delete(UserModel user)
+		{
 
-        public RedirectToRouteResult Edit(UserModel user)
-        {
+			return RedirectToAction("Index", "Home");
+		}
 
-            return RedirectToAction("Index", "Home");
-        }
-    }
+		public RedirectToRouteResult Edit(UserModel user)
+		{
+
+			return RedirectToAction("Index", "Home");
+		}
+	}
 }

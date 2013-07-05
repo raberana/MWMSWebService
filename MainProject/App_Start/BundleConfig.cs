@@ -23,6 +23,9 @@ namespace MainProject
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+			bundles.Add(new ScriptBundle("~/bundles/app").Include(
+						"~/Scripts/app.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/app.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

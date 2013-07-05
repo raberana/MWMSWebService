@@ -44,30 +44,28 @@
 
         <div style="clear: both">
             <h3>CHECK USER:</h3>
-            @using (Html.BeginForm("Find", "Home", FormMethod.Post))
-            {   
+          
                 <div>
                     <div>
-                        @Html.LabelFor(model => model.UserName)
+                        Username:
                     </div>
                     <div>
-                        @Html.EditorFor(model => model.UserName)
+                      <input id="txtUserName" type="text" />
                     </div>
                 </div>
                 <div>
                     <div>
-                        @Html.LabelFor(model => model.Password)
+                       Password:
                     </div>
                     <div>
-                        @Html.PasswordFor(model => model.Password)
+                       <input id="txtPassword" type="password" />
                     </div>
                 </div>
-             
               
                 <p>
-                    <input type="submit" value="CHECK" />
+                    <input id="verifyBtn" type="button" value="CHECK" />
                 </p>
-            }
+            
             <div>
                 CLIENT ID:
             <label id="clientId">USER DOES NOT EXIST</label>
