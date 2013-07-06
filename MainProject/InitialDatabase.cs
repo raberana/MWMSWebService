@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MainProject.App_Start
+namespace MainProject
 {
-    [Migration(1)]
-    public class CreateUserTable : Migration
+    public class InitialDatabase : Migration
     {
         public override void Up()
         {
@@ -23,7 +22,7 @@ namespace MainProject.App_Start
 
         public override void Down()
         {
-            
+
         }
     }
 }

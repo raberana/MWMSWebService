@@ -23,9 +23,7 @@ namespace MainProject
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            var migration = new CreateUserTable();
-            migration.Up();
+            DatabaseConfig.MigrateDatabase("Server=ff4c7673-21c8-4089-93c4-a1e500291e65.sqlserver.sequelizer.com;Database=dbff4c767321c8408993c4a1e500291e65;User ID=dinbhyfbgnktskik;Password=gWQ2FQgQJVudrdeh3LFDvqysvcPgvYiXpFDmiwBzmYCEKjTmAqZgZXdYwwEDbauS;");
         }
     }
 }
