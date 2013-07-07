@@ -10,13 +10,20 @@ namespace MainProject
     {
         public override void Up()
         {
-            if (!Schema.Table("Users").Exists())
+            try
             {
-                Create.Table("Users")
-                    .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
-                    .WithColumn("UserName").AsString(255).NotNullable()
-                    .WithColumn("Password").AsString(255).NotNullable()
-                    .WithColumn("ClientId").AsString(255).NotNullable();
+                if (!Schema.Table("Users").Exists())
+                {
+                    Create.Table("Users")
+                        .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
+                        .WithColumn("UserName").AsString(255).NotNullable()
+                        .WithColumn("Password").AsString(255).NotNullable()
+                        .WithColumn("ClientId").AsString(255).NotNullable();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

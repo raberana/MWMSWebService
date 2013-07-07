@@ -33,16 +33,23 @@ namespace MainProject
 
         public void Migrate(Action<IMigrationRunner> runnerAction)
         {
-            var options = new MigrationOptions { PreviewOnly = false, Timeout = 0 };
-            var factory = new FluentMigrator.Runner.Processors.SqlServer.SqlServer2008ProcessorFactory();
-            var assembly = Assembly.GetExecutingAssembly();
+            try
+            {
+                var options = new MigrationOptions { PreviewOnly = false, Timeout = 0 };
+                var factory = new FluentMigrator.Runner.Processors.SqlServer.SqlServer2008ProcessorFactory();
+                var assembly = Assembly.GetExecutingAssembly();
 
-           
-            var announcer = new TextWriterAnnouncer(s => System.Diagnostics.Debug.WriteLine(s));
-            var migrationContext = new RunnerContext(announcer); ;
-            var processor = factory.Create(this.connectionString, announcer, options);
-            var runner = new MigrationRunner(assembly, migrationContext, processor);
-            runnerAction(runner);
+
+                var announcer = new TextWriterAnnouncer(s => System.Diagnostics.Debug.WriteLine(s));
+                var migrationContext = new RunnerContext(announcer); ;
+                var processor = factory.Create(this.connectionString, announcer, options);
+                var runner = new MigrationRunner(assembly, migrationContext, processor);
+                runnerAction(runner);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
