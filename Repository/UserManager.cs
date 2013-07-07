@@ -49,7 +49,7 @@ namespace ProjectRepository
 
         public IEnumerable<User> FindUsers()
         {
-            throw new NotImplementedException();
+            return Session.QueryOver<User>().Where(user => user.ClientId != "").List().AsEnumerable();
         }
 
         public IEnumerable<User> Find(string text)

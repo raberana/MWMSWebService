@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MwmsBusiness;
+using ProjectRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,9 +12,12 @@ namespace MainProject.Controllers
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public IQueryable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            UserManager userManager = new UserManager();
+            var users = userManager.FindUsers();
+            
+            return users.AsQueryable();
         }
 
         // GET api/values/5

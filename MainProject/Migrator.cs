@@ -10,7 +10,7 @@ using System.Web;
 
 namespace MainProject
 {
-    public class Migrator
+    public class Migrator : Migration
     {
         string connectionString;
 
@@ -50,6 +50,35 @@ namespace MainProject
             {
                 throw ex;
             }
+        }
+
+        public override void Down()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MigrateUp()
+        {
+            try
+            {
+                if (!Schema.Table("Users").Exists())
+                {
+                    Create.Table("Users")
+                        .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
+                        .WithColumn("UserName").AsString(255).NotNullable()
+                        .WithColumn("Password").AsString(255).NotNullable()
+                        .WithColumn("ClientId").AsString(255).NotNullable();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public override void Up()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -23,7 +23,9 @@ namespace MainProject
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            DatabaseConfig.MigrateDatabase("Server=ff4c7673-21c8-4089-93c4-a1e500291e65.sqlserver.sequelizer.com;Database=dbff4c767321c8408993c4a1e500291e65;User ID=dinbhyfbgnktskik;Password=gWQ2FQgQJVudrdeh3LFDvqysvcPgvYiXpFDmiwBzmYCEKjTmAqZgZXdYwwEDbauS;");
+            DatabaseConfig.MigrateDatabase("Data Source=localhost;Initial Catalog=mwms;Integrated Security=True;User ID=sa;Password=sql");
+            FormatterConfig.RegisterFormatters(GlobalConfiguration.Configuration.Formatters);
+
         }
     }
 }
