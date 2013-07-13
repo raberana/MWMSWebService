@@ -19,5 +19,11 @@ namespace MainProject
         }
 
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<UserContext, Migrations.Configuration>());
+        }
     }
 }
