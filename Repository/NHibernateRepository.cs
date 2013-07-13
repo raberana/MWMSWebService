@@ -31,7 +31,7 @@ namespace ProjectRepository
                           .Database(
                               MsSqlConfiguration
                               .MsSql2008
-                              .ConnectionString("Data Source=localhost;Initial Catalog=mwms;Integrated Security=True;User ID=sa;Password=sql"))
+                              .ConnectionString("Server=ff4c7673-21c8-4089-93c4-a1e500291e65.sqlserver.sequelizer.com;Database=dbff4c767321c8408993c4a1e500291e65;User ID=dinbhyfbgnktskik;Password=gWQ2FQgQJVudrdeh3LFDvqysvcPgvYiXpFDmiwBzmYCEKjTmAqZgZXdYwwEDbauS"))
                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TEntity>())
                           .BuildConfiguration();
 
