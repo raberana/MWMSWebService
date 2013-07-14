@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace MainProject.Controllers
 {
+    [AllowCrossSiteJson]
     public class ValuesController : ApiController
     {
         // GET api/values
