@@ -12,5 +12,6 @@ namespace MwmsBusiness
         public virtual string UserName { get; set; }
         public virtual string Password { get; set; }
         public virtual string ClientId { get; set; }
+        public virtual string ClientName { get; set; }
     }
 }

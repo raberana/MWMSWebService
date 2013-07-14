@@ -28,8 +28,14 @@
                     @Html.PasswordFor(model => model.Password)
                 </div>
             </div>
-          
-
+            <div>
+                <div>
+                    @Html.LabelFor(model => model.ClientName)
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.ClientName)
+                </div>
+            </div>
             <div>
                 @Html.LabelFor(model => model.ClientId)
             </div>
@@ -44,28 +50,28 @@
 
         <div style="clear: both">
             <h3>CHECK USER:</h3>
-          
+
+            <div>
                 <div>
-                    <div>
-                        Username:
-                    </div>
-                    <div>
-                      <input id="txtUserName" type="text" />
-                    </div>
+                    Username:
                 </div>
                 <div>
-                    <div>
-                       Password:
-                    </div>
-                    <div>
-                       <input id="txtPassword" type="password" />
-                    </div>
+                    <input id="txtUserName" type="text" />
                 </div>
-              
-                <p>
-                    <input id="verifyBtn" type="button" value="CHECK" />
-                </p>
-            
+            </div>
+            <div>
+                <div>
+                    Password:
+                </div>
+                <div>
+                    <input id="txtPassword" type="password" />
+                </div>
+            </div>
+
+            <p>
+                <input id="verifyBtn" type="button" value="CHECK" />
+            </p>
+
             <div>
                 CLIENT ID:
             <label id="clientId">USER DOES NOT EXIST</label>

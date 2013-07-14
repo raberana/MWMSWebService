@@ -15,6 +15,7 @@ namespace MwmsBusiness.Mapping
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.UserName);
             Map(x => x.Password);
+            Map(x => x.ClientName);
             Map(x => x.ClientId);
         }
     }
