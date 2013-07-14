@@ -41,13 +41,14 @@ namespace ProjectRepository
             Update(user);
         }
 
-        public void AddUser(string userName, string password, string clientId)
+        public void AddUser(string userName, string password, string clientId, string clientName)
         {
             User user = new User()
             {
                 UserName = userName,
                 Password = password,
-                ClientId = clientId
+                ClientId = clientId,
+                ClientName = clientName
             };
             Create(user);
         }

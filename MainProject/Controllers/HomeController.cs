@@ -20,7 +20,7 @@ namespace MainProject.Controllers
 		public RedirectToRouteResult Add(UserModel user)
 		{
 			UserManager manager = new UserManager();
-			manager.AddUser(user.UserName, user.Password, user.ClientId);
+			manager.AddUser(user.UserName, user.Password, user.ClientId, user.ClientName);
 			return RedirectToAction("Index", "Home");
 		}
 
