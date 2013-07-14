@@ -57,10 +57,10 @@ namespace ProjectRepository
             throw new NotImplementedException();
         }
 
-        public User ValidateUser(string userName, string password)
+        public IList<User> ValidateUser(string userName, string password)
         {
-            var user = Session.QueryOver<User>().Where(x => x.UserName == userName.Trim() && x.Password == password.Trim()).SingleOrDefault();
-            return user;
+            var users = Session.QueryOver<User>().Where(x => x.UserName == userName.Trim() && x.Password == password.Trim()).List();
+            return users;
         }
 
     }

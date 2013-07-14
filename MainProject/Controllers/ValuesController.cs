@@ -9,20 +9,29 @@ using System.Web.Http;
 
 namespace MainProject.Controllers
 {
- 
+
     public class ValuesController : ApiController
     {
         public IQueryable<User> Get()
         {
             UserManager userManager = new UserManager();
             var users = userManager.FindUsers();
-            
+
             return users.AsQueryable();
         }
 
         public string Get(int id)
         {
             return "value";
+        }
+
+        public IQueryable<User> Get(string username, string password)
+        {
+            UserManager userManager = new UserManager();
+            var users = userManager.ValidateUser(username.Trim(), password.Trim());
+            if (users.Count == 1)
+                return users.AsQueryable();
+            return null;
         }
 
         public void Post([FromBody]string value)
