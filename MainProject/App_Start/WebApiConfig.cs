@@ -15,11 +15,6 @@ namespace MainProject
                 defaults: new { id = RouteParameter.Optional, format = RouteParameter.Optional }
             );
 
-            config.Routes.MapHttpRoute(
-               name: "DefaultApi2",
-               routeTemplate: "api/{controller}/{format}",
-               defaults: new { format = RouteParameter.Optional }
-           );
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
@@ -30,8 +25,6 @@ namespace MainProject
             // For more information, refer to: http://www.asp.net/web-api
             config.EnableSystemDiagnosticsTracing();
 
-            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(
-                config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml"));
         }
     }
 }
