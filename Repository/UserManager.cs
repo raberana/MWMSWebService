@@ -26,6 +26,11 @@ namespace ProjectRepository
             return Session.QueryOver<User>().Where(x => x.ClientId == clientId).List();
         }
 
+        public IList<User> FindUserById(int id)
+        {
+            return Session.QueryOver<User>().Where(x => x.Id == id).List();
+        }
+
         public void DeleteUser(User user)
         {
             Delete(user);

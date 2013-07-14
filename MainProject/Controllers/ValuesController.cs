@@ -20,18 +20,19 @@ namespace MainProject.Controllers
             return users.AsQueryable();
         }
 
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            UserManager userManager = new UserManager();
+            var users = userManager.FindUserById(id);
+
+            return users[0];
         }
 
-        public IQueryable<User> GetValidatedUser(string username, string password)
+        public User GetValidatedUser(string username, string password)
         {
             UserManager userManager = new UserManager();
             var users = userManager.ValidateUser(username.Trim(), password.Trim());
-            if (users.Count == 1)
-                return users.AsQueryable();
-            return null;
+            return users[0];
         }
 
         public void Post([FromBody]string value)
