@@ -25,7 +25,7 @@ namespace MainProject.Controllers
             return "value";
         }
 
-        public IQueryable<User> Get(string username, string password)
+        public IQueryable<User> GetValidatedUser(string username, string password)
         {
             UserManager userManager = new UserManager();
             var users = userManager.ValidateUser(username.Trim(), password.Trim());

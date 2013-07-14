@@ -17,7 +17,7 @@ namespace MainProject
 
             config.Routes.MapHttpRoute(
                 name: "LoginApi",
-                routeTemplate: "api/{controller}/{username}/{password}"
+                routeTemplate: "api/{controller}/{action}/{username}/{password}"
             );
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.

@@ -27,12 +27,8 @@ namespace MainProject.Controllers
 		public JsonResult Find(string userName, string password)
 		{
 			UserManager manager = new UserManager();
-			User user = manager.ValidateUser(userName, password);
-			List<User> userLists = new List<User>();
-			if (user != null)
-			{
-				userLists.Add(user);
-			}
+            IList<User> userLists = manager.ValidateUser(userName, password);
+			
 
 			return Json(userLists, JsonRequestBehavior.AllowGet);
 		}
