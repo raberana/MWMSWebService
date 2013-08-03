@@ -32,9 +32,9 @@ namespace ProjectRepository
                           .Database(
                               MsSqlConfiguration
                               .MsSql2008
-                              .ConnectionString("Data Source=localhost;Initial Catalog=mwms;Integrated Security=True;User ID=sa;Password=sql"))
+                              .ConnectionString("Server=db2165ad-7d0c-46e3-b7f6-a1fb008efbb5.sqlserver.sequelizer.com;Database=dbdb2165ad7d0c46e3b7f6a1fb008efbb5;User ID=aqnkgphwauowrnei;Password=uCK4nFVdiXDyMdqkedzbCL48HZnmm2ctaBEZokFBZAoyf3o6FxWLgjYRHLuusJZq;"))
                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TEntity>())
-                              //.ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
+                              .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                           .BuildConfiguration();
 
                 sessionFactory = config.BuildSessionFactory();
