@@ -16,19 +16,19 @@ namespace ProjectRepository
         {
         }
 
-        public IList<User> FindUserByUserName(string username)
+        public User FindUserByUserName(string username)
         {
-            return Session.QueryOver<User>().Where(x => x.UserName == username).List();
+            return Session.QueryOver<User>().Where(x => x.UserName == username).SingleOrDefault();
         }
 
-        public IList<User> FindUserByClientId(string clientId)
+        public User FindUserByClientId(string clientId)
         {
-            return Session.QueryOver<User>().Where(x => x.ClientId == clientId).List();
+            return Session.QueryOver<User>().Where(x => x.ClientId == clientId).SingleOrDefault();
         }
 
-        public IList<User> FindUserById(int id)
+        public User FindUserById(int id)
         {
-            return Session.QueryOver<User>().Where(x => x.Id == id).List();
+            return Session.QueryOver<User>().Where(x => x.Id == id).SingleOrDefault();
         }
 
         public void DeleteUser(User user)
@@ -63,10 +63,11 @@ namespace ProjectRepository
             throw new NotImplementedException();
         }
 
-        public IList<User> ValidateUser(string userName, string password)
+        public User ValidateUser(string userName, string password)
         {
-            var users = Session.QueryOver<User>().Where(x => x.UserName == userName.Trim() && x.Password == password.Trim()).List();
-            return users;
+            return Session.QueryOver<User>()
+                .Where(x => x.UserName == userName.Trim() && x.Password == password.Trim())
+                .SingleOrDefault();
         }
 
     }

@@ -12,31 +12,61 @@ namespace MainProject.Controllers
 
     public class ValuesController : ApiController
     {
-        public IQueryable<User> Get()
+        public HttpResponseMessage GetUsers()
         {
             UserManager userManager = new UserManager();
             var users = userManager.FindUsers();
-
-            return users.AsQueryable();
+            if (users != null)
+                return Request.CreateResponse(HttpStatusCode.OK, users);
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No users found");
         }
 
-        public User Get(int id)
+        public HttpResponseMessage GetUser(int id)
         {
             UserManager userManager = new UserManager();
-            var users = userManager.FindUserById(id);
+            var user = userManager.FindUserById(id);
 
-            return users[0];
+            if (user != null)
+                return Request.CreateResponse(HttpStatusCode.OK, user);
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No user found");
         }
 
-        public User GetValidatedUser(string username, string password)
+        [AcceptVerbs("GET", "POST")]
+        public HttpResponseMessage GetValidatedUser(LoginUser loginUser)
         {
             UserManager userManager = new UserManager();
-            var users = userManager.ValidateUser(username.Trim(), password.Trim());
-            return users[0];
+            try
+            {
+                var savedUser = userManager.ValidateUser(loginUser.UserName.Trim(), loginUser.Password.Trim());
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Accepted, loginUser);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
         }
 
-        public void Post([FromBody]string value)
+        [AcceptVerbs("GET", "POST")]
+        public HttpResponseMessage AddUser(User user)
         {
+            UserManager userManager = new UserManager();
+            try
+            {
+                userManager.Create(user);
+
+                var savedUser = userManager.FindUserByClientId(user.ClientId);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, user);
+                response.Headers.Location = new Uri(Url.Link("DefaultApiWithAction", new { id = savedUser.Id }));
+                return response;
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
         }
 
         public void Put(int id, [FromBody]string value)

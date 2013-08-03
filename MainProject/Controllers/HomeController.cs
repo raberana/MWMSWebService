@@ -27,10 +27,9 @@ namespace MainProject.Controllers
 		public JsonResult Find(string userName, string password)
 		{
 			UserManager manager = new UserManager();
-            IList<User> userLists = manager.ValidateUser(userName, password);
+            var user = manager.ValidateUser(userName, password);
 			
-
-			return Json(userLists, JsonRequestBehavior.AllowGet);
+			return Json(user, JsonRequestBehavior.AllowGet);
 		}
 
 		public RedirectToRouteResult Delete(UserModel user)
