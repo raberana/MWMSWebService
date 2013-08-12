@@ -17,6 +17,10 @@ namespace MwmsBusiness.Mapping
             Map(x => x.Password);
             Map(x => x.ClientName);
             Map(x => x.ClientId);
+            HasMany(x => x.Data)
+                .KeyColumn("ClientId")
+                .Inverse()
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

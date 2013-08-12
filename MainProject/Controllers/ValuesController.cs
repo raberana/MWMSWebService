@@ -9,9 +9,10 @@ using System.Web.Http;
 
 namespace MainProject.Controllers
 {
-
+    
     public class ValuesController : ApiController
     {
+        
         public HttpResponseMessage GetUsers()
         {
             UserManager userManager = new UserManager();
