@@ -17,6 +17,7 @@ namespace MwmsBusiness.Mapping
             Map(x => x.Password);
             Map(x => x.ClientName);
             Map(x => x.ClientId);
+            References(x => x.Info);
             HasMany(x => x.Data)
                 .KeyColumn("ClientId")
                 .Inverse()
