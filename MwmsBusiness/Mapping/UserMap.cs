@@ -12,16 +12,13 @@ namespace MwmsBusiness.Mapping
         public UserMap()
         {
             Table("Users");
-            Id(x => x.Id).GeneratedBy.Identity();
+			Id(x => x.Id);
             Map(x => x.UserName);
             Map(x => x.Password);
             Map(x => x.ClientName);
             Map(x => x.ClientId);
             References(x => x.Info);
-            HasMany(x => x.Data)
-                .KeyColumn("ClientId")
-                .Inverse()
-                .Cascade.AllDeleteOrphan();
+			HasMany(x => x.Data).Cascade.All().Inverse();
         }
     }
 }
